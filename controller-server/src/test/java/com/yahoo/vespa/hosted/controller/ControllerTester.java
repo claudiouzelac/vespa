@@ -22,6 +22,8 @@ import com.yahoo.vespa.hosted.controller.api.identifiers.Property;
 import com.yahoo.vespa.hosted.controller.api.identifiers.PropertyId;
 import com.yahoo.vespa.hosted.controller.api.identifiers.ScrewdriverId;
 import com.yahoo.vespa.hosted.controller.api.identifiers.TenantId;
+import com.yahoo.vespa.hosted.controller.api.integration.athens.mock.AthensDbMock;
+import com.yahoo.vespa.hosted.controller.api.integration.athens.mock.AthensMock;
 import com.yahoo.vespa.hosted.controller.api.integration.chef.ChefMock;
 import com.yahoo.vespa.hosted.controller.api.integration.dns.MemoryNameService;
 import com.yahoo.vespa.hosted.controller.api.integration.entity.MemoryEntityService;
@@ -31,7 +33,6 @@ import com.yahoo.vespa.hosted.controller.api.integration.routing.MemoryGlobalRou
 import com.yahoo.vespa.hosted.controller.application.ApplicationPackage;
 import com.yahoo.vespa.hosted.controller.application.Change;
 import com.yahoo.vespa.hosted.controller.cost.CostMock;
-import com.yahoo.vespa.hosted.controller.cost.MockInsightBackend;
 import com.yahoo.vespa.hosted.controller.integration.MockMetricsService;
 import com.yahoo.vespa.hosted.controller.persistence.ControllerDb;
 import com.yahoo.vespa.hosted.controller.persistence.CuratorDb;
@@ -40,8 +41,6 @@ import com.yahoo.vespa.hosted.controller.persistence.MockCuratorDb;
 import com.yahoo.vespa.hosted.controller.routing.MockRoutingGenerator;
 import com.yahoo.vespa.hosted.controller.versions.VersionStatus;
 import com.yahoo.vespa.hosted.rotation.MemoryRotationRepository;
-import com.yahoo.vespa.hosted.controller.api.integration.athens.mock.AthensMock;
-import com.yahoo.vespa.hosted.controller.api.integration.athens.mock.AthensDbMock;
 
 import java.util.Optional;
 
@@ -79,7 +78,7 @@ public final class ControllerTester {
                                                new MemoryEntityService(),
                                                new MemoryGlobalRoutingService(),
                                                zoneRegistryMock,
-                                               new CostMock(new MockInsightBackend()),
+                                               new CostMock(),
                                                configServerClientMock,
                                                new MockMetricsService(),
                                                nameService,
